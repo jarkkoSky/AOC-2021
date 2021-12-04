@@ -88,16 +88,19 @@ const playBingo = (boardFn) => {
     })(checkForWinner(hits));
   }
 
-  const lastBoard = boardFn(winningBoards);
-  const numbersCalledBeforeLast = takeNumberAndAllBefore(lastBoard[1], numbers);
+  const resultBoard = boardFn(winningBoards);
+  const numbersCalledBeforeLast = takeNumberAndAllBefore(
+    resultBoard[1],
+    numbers
+  );
 
   R.compose(
-    (x) => console.log('2: Result is', x),
-    R.multiply(lastBoard[1]),
+    (x) => console.log('Result is', x),
+    R.multiply(resultBoard[1]),
     R.sum,
     R.without(numbersCalledBeforeLast),
     R.flatten
-  )(boards[lastBoard[0]]);
+  )(boards[resultBoard[0]]);
 };
 
 /* Part 1: 2745 */
